@@ -1,7 +1,11 @@
-int P1 = 3;
-int P2 = 5;
-int N1 = 6;
-int N2 = 9;
+//P type mosfet 1
+int P1 = 11;
+//P type mosfet 2
+int P2 = 9;
+//N type mosfet 1
+int N1 = 10;
+// N type mosfet 2
+int N2 = 6;
 
 void setup() {
   // put your setup code here, to run once:
@@ -19,20 +23,22 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   State_1();
-  delay(1000);
+  delay(2000);
   State_2();
-  delay(1000);
+  delay(2000);
   State_Off();
-  delay(1000);
+  delay(2000);
 }
 
 void State_1(){
   //Turn off motor direction 2
+  Serial.println("State 2 off");
   digitalWrite(P2, HIGH);
   // delay(100);
   digitalWrite(N1,LOW);
   delay(100);
   //Turn on motor direction 1
+  Serial.println("State 1 on");
   digitalWrite(P1, LOW);
   // delay(100);
   digitalWrite(N2, HIGH);
@@ -41,11 +47,13 @@ void State_1(){
 
 void State_2(){
   //Turn off motor direction 1
+  Serial.println("State 1 off");
   digitalWrite(P1, HIGH);
   // delay(100);
   digitalWrite(N2, LOW);
   delay(100);
   //Turn on motor direction 2
+  Serial.println("State 2 on");
   digitalWrite(P2, LOW);
   // delay(100);
   digitalWrite(N1, HIGH);
@@ -53,6 +61,7 @@ void State_2(){
 }
 
 void State_Off(){
+  Serial.println("State off");
   digitalWrite(P1, HIGH);
   // delay(100);
   digitalWrite(N2,LOW);
